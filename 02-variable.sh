@@ -1,6 +1,8 @@
 #!/bin/bash
+P1=Suresh
+P2=Ramesh
 
-echo "Suresh: Hi Ramesh,How are you"
-echo "Ramesh: Hi Suresh I am good how r you "
-echo "Suresh: Iam  good,where ar eyou now"
-echo "Ramesh: Iam in Vizag"
+echo "$P1: Hi $P2,How are you"
+echo "$P2: Hi $P1 I am good how r you "
+echo "$P1: Iam  good,where ar eyou now"
+echo "$P2: Iam in Vizag"
