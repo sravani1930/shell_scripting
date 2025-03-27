@@ -1,4 +1,4 @@
-FRUITS=(apple,banana,mango)
+FRUITS=("apple" "banana" "mango" )
 
 echo "first fruit is ${FRUIT[0]}"
 echo "first fruit is ${FRUIT[1]}"
