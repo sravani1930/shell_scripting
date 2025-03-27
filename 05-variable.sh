@@ -2,5 +2,5 @@
 USERNAME=$1
 PASSWORD=$2
 
-echo "print username is $USERNAME"
-echo "print password is $PASSWORD"
+echo "username is $USERNAME"
+echo "password is $PASSWORD"
