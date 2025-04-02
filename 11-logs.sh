@@ -13,16 +13,16 @@ N="\e[0m"
 VALIDATE(){
    if [ $1 -ne 0 ]
    then
-       echo -e " $R ERROR :: $2 ... FIALED !!!! $N"
+       echo -e "$R ERROR :: $2 ... FIALED !!!! $N"
        exit 1
    else
-       echo  -e" $2 ....$G SUCCESS !!! $N"
+       echo -e "$2 ....$G SUCCESS !!! $N"
    fi
 }
 
 if [ $ID -ne 0 ]
 then
-   echo  -e " $R please switch to root user $N"
+   echo  -e "$R please switch to root user $N"
    exit 1
 else
    echo "proceed to install the package"
