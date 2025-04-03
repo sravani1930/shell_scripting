@@ -8,7 +8,7 @@ echo "script started executing at $TIMESTAMP" &>> $LOGFILE
 R="\e[31m"
 G="\e[32m"
 y="\e[33m"
-N="\e[0m
+N="\e[0m"
 
 validate(){
    if [ $1 -ne 0 ]
@@ -38,4 +38,4 @@ do
    else
       echo -e "$Y $Package is already Installed !!!..SKIPPING $N"
    fi
-done 
+done
