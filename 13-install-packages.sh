@@ -7,7 +7,7 @@ echo "script started executing at $TIMESTAMP" &>> $LOGFILE
 
 R="\e[31m"
 G="\e[32m"
-y="\e[33m"
+Y="\e[33m"
 N="\e[0m"
 
 validate(){
@@ -36,6 +36,6 @@ do
       yum install $package &>> $LOGFILE
       validate $? "$package INSTALLATION"
    else
-      echo -e "$Y $Package is already Installed !!!..SKIPPING $N"
+      echo -e "$Package is already Installed !!!.. $Y SKIPPING $N"
    fi
 done
