@@ -33,7 +33,7 @@ do
   yum list installed $package
   if [ $? -ne 0 ]
   then
-      yum install $package &>> $LOGFILE
+      yum install $package -y &>> $LOGFILE
       validate $? "$package INSTALLATION"
    else
       echo -e "$Package is already Installed !!!.. $Y SKIPPING $N"
