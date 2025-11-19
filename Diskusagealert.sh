@@ -17,7 +17,29 @@ else
    echo "proceed to check diskusage"
 fi
 
-FILESYSTEM=$(df -h)
-DISKUSAGE=$(df -h | awk '{print $5}' )
 
-echo "show th Diskusage: $DISKUSAGE"
+
+DISKUSAGE=$(df -hT | grep -vE 'tmp|file')
+Threshold=1
+while IFS= read line
+do
+   usage=$(echo $line | awk '{print $5F}' | cut -d % -f1)
+   Diskname=$(echo $line | awk '{print $F}')
+   if [ $usage -ge $THRESHOLD]
+   then 
+    
+       echo "Message+= "HigH usage alert on $DISKNAME with threshold limit $usage/n"
+   fi
+
+# done <<< $DISKUSAGE
+
+# if [ $DISKUSAGE -ge 10%]
+# then
+#     mail -s "Disk usage reaches more than 10%" sravani3093@example.com <<EOF
+# Hi Team,
+# This is to inform you below Filesystem reached more than 10%
+# please perform the houskeeping to limit the filesystem thereshold
+
+# Thanks & Regards,
+# Monitoring Team
+# EOF
