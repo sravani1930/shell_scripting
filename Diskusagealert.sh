@@ -27,10 +27,11 @@ do
    DISK_NAME=$(echo $line | awk '{print $1F}')
    if [ $USAGE -ge $THRESHOLD ]
    then 
-       Message+= "HigH usage alert on $DISKNAME with threshold limit $usage/n"
+       Message+="High usage alert on $DISK_NAME with threshold limit $USAGE"
    fi
 
 done <<< $DISKUSAGE
+
 
 # if [ $DISKUSAGE -ge 10%]
 # then
