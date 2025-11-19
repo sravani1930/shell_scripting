@@ -17,15 +17,15 @@ else
    echo "proceed to check diskusage"
 fi
 
-DISKUSAGE=$(df -hT | grep -vE 'tmp|file|Filesystem')
-THRESHOLD=1
+DISK_USAGE=$(df -hT | grep -vE 'tmp|file|Filesystem')
+DISK_THRESHOLD=1
 MESSAGE=""
 
 while IFS= read -r line
 do
     USAGE=$(echo $line | awk '{print $7F}' | tr -d '%')
     DISK_NAME=$(echo $line | awk '{print $1F}')
-    if [ $USAGE -ge $THRESHOLD ] 
+    if [ $USAGE -ge $DISK_THRESHOLD ] 
     then
         MESSAGE+="High usage alert on $DISK_NAME: ${USAGE}%\n"
     fi
