@@ -16,12 +16,26 @@ done <<< $DISK_USAGE
 
 echo -e "Message: $message"
 
-mail -s "$partition reached  more than 1%" sravani3093@example.com <<EOF
-Hi Team,
-This is to inform you below Filesystem reached more than 10%
-please perform the houskeeping to limit the filesystem thereshold
 
-$partition: $usage
+FROM="sravani3093@gmail.com"
+TO="sravani.jamithireddy@gmail.com"
+SUBJECT="Disk Usage Alert on Server $(hostname)"
+EMAIL_BODY=$(cat <<EOF
+Hello Team,
+
+Please find the disk usage alert details below:
+
+$MESSAGE
+
+Kindly perform the necessary housekeeping to free space.
+
 Thanks & Regards,
-Monitoring Team
+Your Server Monitoring Script
 EOF
+)
+
+
+aws ses send-email \
+  --from "$FROM" \
+  --destination "ToAddresses=$TO" \
+  --message "Subject={Data=$SUBJECT},Body={Text={Data=$EMAIL_BODY}}
