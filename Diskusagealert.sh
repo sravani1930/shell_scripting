@@ -23,12 +23,11 @@ DISKUSAGE=$(df -hT | grep -vE 'tmp|file')
 Threshold=1
 while IFS= read line
 do
-   usage=$(echo $line | awk '{print $5F}' | cut -d % -f1)
-   Diskname=$(echo $line | awk '{print $F}')
-   if [ $usage -ge $THRESHOLD ]
+   USAGE=$(echo $line | awk '{print $5F}' | cut -d % -f1)
+   DISK_NAME=$(echo $line | awk '{print $F}')
+   if [ $USAGE -ge $THRESHOLD ]
    then 
-    
-       echo Message+= "HigH usage alert on $DISKNAME with threshold limit $usage/n"
+       Message+= "HigH usage alert on $DISKNAME with threshold limit $usage/n"
    fi
 
 done <<< $DISKUSAGE
