@@ -17,7 +17,7 @@ else
    echo "proceed to check diskusage"
 fi
 
-FILESYSTEM=$(df -h)
-DISKUSAGE= $($FILESYSTEM | awk '{print $5}' )
+
+DISKUSAGE= $($df -h | awk '{print $5}' )
 
 echo "show th Diskusage $DISKUSAGE"
