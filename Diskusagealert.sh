@@ -28,10 +28,10 @@ do
    if [ $usage -ge $THRESHOLD]
    then 
     
-       echo "Message+= "HigH usage alert on $DISKNAME with threshold limit $usage/n"
+       echo Message+= "HigH usage alert on $DISKNAME with threshold limit $usage/n"
    fi
 
-# done <<< $DISKUSAGE
+done <<< $DISKUSAGE
 
 # if [ $DISKUSAGE -ge 10%]
 # then
