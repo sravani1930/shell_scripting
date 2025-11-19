@@ -15,11 +15,12 @@ do
 done <<< $DISK_USAGE
 
 echo -e "Message: $message"
+FROM="sravani3093@gmail.com"
+TO="sravani.jamithireddy@gmail.com"
+SUBJECT="Disk Usage Alert on Server $(hostname)"
+EMAIL_TEXT="/tmp/email_body_$$.txt"
 
-
-EMAIL_FILE="/tmp/email_$$.txt"
-
-cat <<EOF > $EMAIL_FILE
+cat <<EOF > "$EMAIL_TEXT"
 Hello Team,
 
 Please find the disk usage alert details below:
@@ -32,13 +33,30 @@ Thanks & Regards,
 Linux Admin
 EOF
 
-FROM="sravani3093@gmail.com"
-TO="sravani.jamithireddy@gmail.com"
-SUBJECT="Disk Usage Alert on Server $(hostname)"
+EMAIL_JSON="/tmp/email_json_$$.json"
 
-aws ses send-email \
-  --from "$FROM" \
-  --destination "ToAddresses=$TO" \
-  --message "Subject={Data=$SUBJECT},Body={Text={Data=$(sed 's/"/\\"/g' $EMAIL_FILE)}}"
+cat <<EOF > "$EMAIL_JSON"
+{
+  "Source": "$FROM",
+  "Destination": {
+    "ToAddresses": ["$TO"]
+  },
+  "Message": {
+    "Subject": {
+      "Data": "$SUBJECT"
+    },
+    "Body": {
+      "Text": {
+        "Data": "$(sed 's/"/\\"/g' "$EMAIL_TEXT")"
+      }
+    }
+  }
+}
+EOF
 
-rm -f $EMAIL_FILE
+aws ses send-email --cli-input-json file://$EMAIL_JSON
+
+rm -f "$EMAIL_TEXT" "$EMAIL_JSON"
+
+
+
