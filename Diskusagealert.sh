@@ -16,6 +16,12 @@ done <<< $DISK_USAGE
 
 echo -e "Message: $message"
 
-#echo "$message" | mail -s "High Disk Usage" info@joindevops.com
+mail -s "$partition reached  more than 1%" sravani3093@example.com <<EOF
+Hi Team,
+This is to inform you below Filesystem reached more than 10%
+please perform the houskeeping to limit the filesystem thereshold
 
-#sh mail.sh "DevOps Team" "High Disk Usage" "$message" "info@joindevops.com" "ALERT High Disk Usage"
+$partition: $usage
+Thanks & Regards,
+Monitoring Team
+EOF
