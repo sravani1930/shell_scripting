@@ -16,10 +16,6 @@ done <<< $DISK_USAGE
 
 echo -e "Message: $message"
 
-
-FROM="sravani3093@gmail.com"
-TO="sravani.jamithireddy@gmail.com"
-SUBJECT="Disk Usage Alert on Server $(hostname)"
 EMAIL_BODY=$(cat <<EOF
 Hello Team,
 
@@ -27,15 +23,16 @@ Please find the disk usage alert details below:
 
 $MESSAGE
 
-Kindly perform the necessary housekeeping to free space.
+Kindly perform housekeeping to free up disk space.
 
 Thanks & Regards,
-Your Server Monitoring Script
+Linux Admin
 EOF
 )
-
-
+FROM="sravani3093@gmail.com"
+TO="sravani.jamithireddy@gmail.com"
+SUBJECT="Disk Usage Alert on Server $(hostname)"
 aws ses send-email \
   --from "$FROM" \
   --destination "ToAddresses=$TO" \
-  --message "Subject={Data=$SUBJECT},Body={Text={Data=$EMAIL_BODY}}
+  --message "Subject={Data=$SUBJECT},Body={Text={Data=$EMAIL_BODY}}"
