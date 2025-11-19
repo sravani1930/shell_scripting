@@ -23,13 +23,13 @@ MESSAGE=""
 
 while IFS= read -r line
 do
-    USAGE=$(echo $line | awk '{print $7F}' | tr -d '%')
+    usage=$(echo $line | awk '{print $7F}' | tr -d '%')
     DISK_NAME=$(echo $line | awk '{print $1F}')
-    if [ $USAGE -ge $DISK_THRESHOLD ] 
+    if [ $usage -gt $DISK_THRESHOLD ] 
     then
         MESSAGE+="High usage alert on $DISK_NAME: ${USAGE}%\n"
     fi
-done <<< $DISKUSAGE
+done <<< $DISK_USAGE
 
 echo -e "message:\n$MESSAGE"
 
