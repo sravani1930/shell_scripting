@@ -25,7 +25,7 @@ while IFS= read line
 do
    usage=$(echo $line | awk '{print $5F}' | cut -d % -f1)
    Diskname=$(echo $line | awk '{print $F}')
-   if [ $usage -ge $THRESHOLD]
+   if [ $usage -ge $THRESHOLD ]
    then 
     
        echo Message+= "HigH usage alert on $DISKNAME with threshold limit $usage/n"
