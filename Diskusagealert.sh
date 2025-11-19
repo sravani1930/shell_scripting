@@ -16,7 +16,6 @@ done <<< $DISK_USAGE
 
 echo -e "Message: $message"
 
-E# ---------------- EMAIL BODY FILE (SAFE METHOD) ----------------
 
 EMAIL_FILE="/tmp/email_$$.txt"
 
