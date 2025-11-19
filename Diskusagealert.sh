@@ -18,6 +18,6 @@ else
 fi
 
 FILESYSTEM=$(df -h)
-#DISKUSAGE= $($FILESYSTEM | awk '{print $5}' )
+DISKUSAGE=$($FILESYSTEM | awk '{print $5}' )
 
-echo "show th Diskusage $FILESYSTEM"
+echo "show th Diskusage: $DISKUSAGE"
