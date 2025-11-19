@@ -19,13 +19,14 @@ fi
 
 DISKUSAGE=$(df -hT | grep -vE 'tmp|file')
 THRESHOLD=1
+MESSAGE=""
 while IFS= read line
 do
-   USAGE=$(echo $line | awk '{print $6F}' | cut -d % -f1)
-   DISK_NAME=$(echo $line | awk '{print $1F}')
-   if [ $USAGE -ge $THRESHOLD ]
+   USAGE=$(echo $line | awk '{print $6}' | cut -d % )
+   DISK_NAME=$(echo $line | awk '{print $1}')
+   if [ $USAGE -ge $THRESHOLD ];
    then 
-       Message+="High usage alert on $DISK_NAME: $USAGE"
+       Message+="High usage alert on $DISK_NAME: $USAGE%\n"
    fi
 done <<< $DISKUSAGE
 echo "message:$MESSAGE"
