@@ -17,8 +17,6 @@ else
    echo "proceed to check diskusage"
 fi
 
-
-
 DISKUSAGE=$(df -hT | grep -vE 'tmp|file')
 THRESHOLD=1
 while IFS= read line
@@ -29,7 +27,6 @@ do
    then 
        Message+="High usage alert on $DISK_NAME: $USAGE"
    fi
-
 done <<< $DISKUSAGE
 
 
