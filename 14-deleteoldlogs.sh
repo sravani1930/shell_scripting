@@ -13,7 +13,7 @@ fi
 
 
 find /var/log/ -type f -name "*.log" -mtime +15 &>> $LOGFILE
-if [ $? -ne 0] 
+if [ $? -ne 0 ] 
 then
     echo " There are no log files available more than 15 days "
     exit 1
