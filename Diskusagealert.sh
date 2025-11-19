@@ -28,6 +28,7 @@ do
        Message+="High usage alert on $DISK_NAME: $USAGE"
    fi
 done <<< $DISKUSAGE
+echo "message:$MESSAGE"
 
 
 # if [ $DISKUSAGE -ge 10%]
