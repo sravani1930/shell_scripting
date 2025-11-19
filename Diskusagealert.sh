@@ -16,6 +16,8 @@ done <<< $DISK_USAGE
 
 echo -e "Message: $message"
 
+E# ---------------- EMAIL BODY FILE (SAFE METHOD) ----------------
+
 EMAIL_FILE="/tmp/email_$$.txt"
 
 cat <<EOF > $EMAIL_FILE
@@ -23,19 +25,21 @@ Hello Team,
 
 Please find the disk usage alert details below:
 
-$MESSAGE
+$message
 
 Kindly perform housekeeping to free up disk space.
 
 Thanks & Regards,
 Linux Admin
 EOF
+
 FROM="sravani3093@gmail.com"
 TO="sravani.jamithireddy@gmail.com"
 SUBJECT="Disk Usage Alert on Server $(hostname)"
+
 aws ses send-email \
   --from "$FROM" \
   --destination "ToAddresses=$TO" \
-  --message "Subject={Data=$SUBJECT},Body={Text={Data=$(cat $EMAIL_FILE)}}"
+  --message "Subject={Data=$SUBJECT},Body={Text={Data=$(sed 's/"/\\"/g' $EMAIL_FILE)}}"
 
 rm -f $EMAIL_FILE
